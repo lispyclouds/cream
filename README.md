@@ -6,8 +6,9 @@ binary that runs full JVM Clojure with fast startup.
 Cream uses GraalVM's Crema (RuntimeClassLoading) to enable runtime `eval`,
 `require`, and library loading in a native binary.
 
-> Warning: Cream is experimental. It depends on GraalVM Crema (EA) and a
-> custom Clojure fork. Do not use in production.
+> Warning: Cream is very alpha. It depends on GraalVM Crema (EA) and a
+> custom Clojure fork. Do not use in production. Issues and ideas are welcome
+> though: https://github.com/borkdude/cream/issues
 
 ## Install
 
