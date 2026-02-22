@@ -1,6 +1,6 @@
 # Cream
 
-Clojure + [Crema](https://github.com/nicovank/graal-crema-demo): a native
+Clojure + [Crema](https://github.com/oracle/graal/issues/11327): a native
 binary that runs full JVM Clojure with fast startup.
 
 Cream uses GraalVM's Crema (RuntimeClassLoading) to enable runtime `eval`,
