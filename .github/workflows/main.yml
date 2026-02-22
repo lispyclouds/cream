@@ -81,6 +81,7 @@ jobs:
 
   release:
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -105,9 +106,7 @@ jobs:
           body: |
             Rolling development build of cream (Clojure + Crema).
 
-            **Requires `JAVA_HOME` pointing to a GraalVM EA build with RuntimeClassLoading support.**
-
             ```sh
             tar xzf cream-<platform>-<arch>.tar.gz
-            JAVA_HOME=/path/to/graalvm ./cream -M -e '(+ 1 2 3)'
+            ./cream -M -e '(+ 1 2 3)'
             ```

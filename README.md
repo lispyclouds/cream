@@ -9,6 +9,21 @@ Cream uses GraalVM's Crema (RuntimeClassLoading) to enable runtime `eval`,
 > **Warning**: Cream is experimental. It depends on GraalVM Crema (EA) and a
 > custom Clojure fork. Do not use in production.
 
+## Install
+
+Download from the [latest dev release](https://github.com/borkdude/cream/releases/tag/dev):
+
+```sh
+# macOS (Apple Silicon)
+curl -sL https://github.com/borkdude/cream/releases/download/dev/cream-macos-aarch64.tar.gz | tar xz
+# Linux (x86_64)
+curl -sL https://github.com/borkdude/cream/releases/download/dev/cream-linux-amd64.tar.gz | tar xz
+
+sudo mv cream /usr/local/bin/
+```
+
+Or build from source (see [Building from source](#building-from-source)).
+
 ## Quick start
 
 ```sh
