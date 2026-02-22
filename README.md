@@ -34,6 +34,18 @@ $ ./cream -M -e '(+ 1 2 3)'
 6
 ```
 
+## Runtime type creation
+
+Unlike babashka, cream supports `definterface`, `deftype`, `gen-class`, and
+other constructs that generate JVM bytecode at runtime:
+
+```sh
+$ ./cream -M -e '(do (definterface IGreet (greet [name]))
+                     (deftype Greeter [] IGreet (greet [_ name] (str "Hello, " name)))
+                     (.greet (Greeter.) "world"))'
+"Hello, world"
+```
+
 ## Loading libraries at runtime
 
 Use `-Scp` to add JARs to the classpath:
