@@ -93,6 +93,7 @@ workarounds.
 | Binary size | ~300MB | ~70MB |
 | Standalone | Mostly (may need `JAVA_HOME` for Java interop) | Yes |
 | Loop performance | ~720ms (interpreted) | ~270ms (compiled) |
+| Compile time (GitHub Actions, linux-amd64) | ~10min | ~3min |
 | Maturity | Experimental | Production-ready |
 
 Cream runs Clojure code through Crema's interpreter, so tight loops are slower
