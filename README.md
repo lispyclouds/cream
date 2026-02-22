@@ -6,7 +6,7 @@ binary that runs full JVM Clojure with fast startup.
 Cream uses GraalVM's Crema (RuntimeClassLoading) to enable runtime `eval`,
 `require`, and library loading in a native binary.
 
-> **Warning**: Cream is experimental. It depends on GraalVM Crema (EA) and a
+> Warning: Cream is experimental. It depends on GraalVM Crema (EA) and a
 > custom Clojure fork. Do not use in production.
 
 ## Install
@@ -52,19 +52,19 @@ filesystem). Pure Clojure code works without `JAVA_HOME`.
 
 ## Known limitations
 
-- **May need `JAVA_HOME` for Java interop** — some JDK classes require `JAVA_HOME` at runtime; pure Clojure works without it
-- **Requires a lightly patched Clojure fork** — minor workarounds for Crema
+- May need `JAVA_HOME` for Java interop — some JDK classes require `JAVA_HOME` at runtime; pure Clojure works without it
+- Requires a lightly patched Clojure fork — minor workarounds for Crema
   quirks in `RT.java`, `Var.java`, and `Compiler.java`
   ([details](doc/technical.md#fork-changes))
-- **Java enum support broken** — `enum.values()` and `EnumMap` crash in
+- Java enum support broken — `enum.values()` and `EnumMap` crash in
   Crema's interpreter. Affects http-kit, cheshire, clj-yaml, and other
   libraries using Java enums
-- **`Class.forName` not dispatchable** — GraalVM inlines `Class.forName`
+- `Class.forName` not dispatchable — GraalVM inlines `Class.forName`
   substitutions at call sites, so Crema's interpreter can't dispatch to it.
   The Clojure fork redirects to `RT.classForName` as a workaround, but Java
   `.class` files calling `Class.forName` directly will still fail
-- **Large binary** — ~300MB (includes Crema interpreter and preserved packages)
-- **Crema is EA** — GraalVM's RuntimeClassLoading is experimental and only
+- Large binary — ~300MB (includes Crema interpreter and preserved packages)
+- Crema is EA — GraalVM's RuntimeClassLoading is experimental and only
   available in [EA builds](https://github.com/graalvm/oracle-graalvm-ea-builds)
 
 See [doc/technical.md](doc/technical.md) for the full list of known issues and
@@ -74,18 +74,18 @@ workarounds.
 
 | | Cream | [Babashka](https://babashka.org) |
 |---|---|---|
-| **Clojure** | Full JVM Clojure (1.13 fork) | SCI interpreter (subset) |
-| **Library loading** | Any library from JARs at runtime | Built-in set + pods |
-| **Java interop** | Full (runtime class loading) | Limited to compiled-in classes |
-| **Startup** | ~20ms | ~5ms |
-| **Binary size** | ~300MB | ~30MB |
-| **Standalone** | Mostly (may need `JAVA_HOME` for Java interop) | Yes |
-| **Maturity** | Experimental | Production-ready |
+| Clojure | Full JVM Clojure (1.13 fork) | SCI interpreter (subset) |
+| Library loading | Any library from JARs at runtime | Built-in set + pods |
+| Java interop | Full (runtime class loading) | Limited to compiled-in classes |
+| Startup | ~20ms | ~5ms |
+| Binary size | ~300MB | ~30MB |
+| Standalone | Mostly (may need `JAVA_HOME` for Java interop) | Yes |
+| Maturity | Experimental | Production-ready |
 
-**When cream might make sense**: you need full Clojure compatibility, arbitrary
+When cream might make sense: you need full Clojure compatibility, arbitrary
 library loading, or Java interop beyond what babashka offers.
 
-**When babashka is better**: scripting, tasks, CI glue, or anything where a
+When babashka is better: scripting, tasks, CI glue, or anything where a
 standalone binary, fast startup, and a mature ecosystem matter.
 
 ## Tested libraries
@@ -137,14 +137,14 @@ Requires a GraalVM EA build with RuntimeClassLoading support.
 
 ## Future work
 
-- **Fully standalone binary** — investigate whether JRT metadata can be bundled
+- Fully standalone binary — investigate whether JRT metadata can be bundled
   in the binary to eliminate the `JAVA_HOME` requirement for Java interop
-- **Enum support** — blocked on Crema fixing `enum.values()` /
+- Enum support — blocked on Crema fixing `enum.values()` /
   `InterpreterResolvedObjectType.getDeclaredMethodsList()` NPE. Would unblock
   http-kit, cheshire, clj-yaml
-- **Reduce binary size** — currently ~300MB due to preserved packages and
+- Reduce binary size — currently ~300MB due to preserved packages and
   Crema interpreter overhead
-- **nREPL support** — enable interactive development with editor integration
+- nREPL support — enable interactive development with editor integration
 
 ## Documentation
 
