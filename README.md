@@ -75,7 +75,7 @@ workarounds.
 | | Cream | [Babashka](https://babashka.org) |
 |---|---|---|
 | Clojure | Full JVM Clojure (1.13 fork) | SCI interpreter (subset) |
-| Library loading | Any library from JARs at runtime | Built-in set + pods |
+| Library loading | Any library from JARs at runtime | Any library (with built-in classes, SCI/deftype limitations) |
 | Java interop | Full (runtime class loading) | Limited to compiled-in classes |
 | Startup | ~20ms | ~5ms |
 | Binary size | ~300MB | ~30MB |
