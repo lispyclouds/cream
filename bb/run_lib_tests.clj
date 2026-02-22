@@ -49,7 +49,7 @@
 ;; Specific test vars to skip per library.
 ;; Each entry is a fully qualified var that gets :skip-cream metadata.
 (def skip-tests
-  (merge
+  (merge-with into
     {;; Shift_JIS/EUC-JP charsets not available in native image
      'hiccup/hiccup
      ["hiccup.util_test/test-url-encode"]
@@ -58,6 +58,8 @@
      ["clojure.data.json-gen-test/roundtrip"]}
     (when (fs/windows?)
       {;; \r\n line ending mismatches on Windows
+       'org.clojure/data.json
+       ["clojure.data.json-test/pretty-print-nonescaped-unicode"]
        'lambdaisland/deep-diff2
        ["lambdaisland.deep-diff2-test/pretty-print-test"
         "lambdaisland.deep-diff2.printer-test/print-doc-test"]

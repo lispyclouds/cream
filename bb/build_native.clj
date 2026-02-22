@@ -50,6 +50,8 @@
          "-H:Preserve=package=javax.net.ssl"
          "-H:Preserve=package=javax.xml.*"
          (str "-Djava.home=" (System/getenv "GRAALVM_HOME"))
+         "-J-Djava.file.encoding=UTF-8"
+         "-Djava.file.encoding=UTF-8"
          "--enable-url-protocols=http,https,jar,unix"
          "--enable-all-security-services"
          "-H:+AllowJRTFileSystem"
