@@ -65,8 +65,7 @@ Cream can run `.java` source files directly, compiling and caching them
 automatically. This makes it a fast alternative to [JBang](https://www.jbang.dev/)
 with fast startup.
 
-```sh
-$ cat /tmp/Hello.java
+```java
 public class Hello {
     public static void main(String[] args) {
         System.out.println("Hello from Java!");
@@ -75,7 +74,9 @@ public class Hello {
         }
     }
 }
+```
 
+```sh
 $ ./cream /tmp/Hello.java
 Hello from Java!
 
@@ -88,8 +89,7 @@ Args: world
 
 Use `//DEPS` comments (same syntax as JBang) to declare Maven dependencies:
 
-```sh
-$ cat /tmp/HelloCodec.java
+```java
 //DEPS commons-codec:commons-codec:1.17.1
 
 import org.apache.commons.codec.binary.Hex;
@@ -103,7 +103,9 @@ public class HelloCodec {
         System.out.println("SHA-256: " + DigestUtils.sha256Hex(input));
     }
 }
+```
 
+```sh
 $ time ./cream /tmp/HelloCodec.java
 Input: hello world
 Hex: 68656c6c6f20776f726c64
