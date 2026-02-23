@@ -12,7 +12,7 @@
          "-jar" "target/cream-1.0.0-standalone.jar"
          "--initialize-at-run-time=com.sun.tools.javac.file.Locations,jdk.internal.jrtfs.SystemImage"
          "--initialize-at-build-time=clojure,cream,org.xml.sax,com.sun.tools.doclint,com.sun.tools.javac.parser.Tokens$TokenKind,com.sun.tools.javac.parser.Tokens$Token$Tag"
-         "--features=ClojureFeature"
+         "--features=ClojureFeature,clj_easy.graal_build_time.InitClojureClasses"
          "-H:+UnlockExperimentalVMOptions"
          "-H:Name=cream"
          "-H:+RuntimeClassLoading"
