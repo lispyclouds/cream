@@ -69,12 +69,14 @@ filesystem). Pure Clojure code works without `JAVA_HOME`.
 - Requires a lightly patched Clojure fork (minor workarounds for Crema
   quirks in `RT.java`, `Var.java`, and `Compiler.java`,
   [details](doc/technical.md#fork-changes))
-- Java enum support broken (`enum.values()` and `EnumMap` crash in
-  Crema's interpreter, affects http-kit, cheshire, clj-yaml)
-- `Class.forName` not dispatchable (GraalVM inlines `Class.forName`
-  substitutions at call sites, so Crema's interpreter can't dispatch to it;
-  the Clojure fork redirects to `RT.classForName` as a workaround, but Java
-  `.class` files calling `Class.forName` directly will still fail)
+- Java enum support broken ([oracle/graal#13034](https://github.com/oracle/graal/issues/13034):
+  `enum.values()` and `EnumMap` crash in Crema's interpreter, affects
+  http-kit, cheshire, clj-yaml)
+- `Class.forName` not dispatchable ([oracle/graal#13031](https://github.com/oracle/graal/issues/13031):
+  GraalVM inlines `Class.forName` substitutions at call sites, so Crema's
+  interpreter can't dispatch to it; the Clojure fork redirects to
+  `RT.classForName` as a workaround, but Java `.class` files calling
+  `Class.forName` directly will still fail)
 - Large binary (~300MB, includes Crema interpreter and preserved packages)
 - Crema is EA (GraalVM's RuntimeClassLoading is experimental and only
   available in [EA builds](https://github.com/graalvm/oracle-graalvm-ea-builds))
@@ -191,9 +193,8 @@ Requires a GraalVM EA build with RuntimeClassLoading support.
 
 - Fully standalone binary: investigate whether JRT metadata can be bundled
   in the binary to eliminate the `JAVA_HOME` requirement for Java interop
-- Enum support: blocked on Crema fixing `enum.values()` /
-  `InterpreterResolvedObjectType.getDeclaredMethodsList()` NPE, would unblock
-  http-kit, cheshire, clj-yaml
+- Enum support: blocked on [oracle/graal#13034](https://github.com/oracle/graal/issues/13034),
+  would unblock http-kit, cheshire, clj-yaml
 - Reduce binary size: currently ~300MB due to preserved packages and
   Crema interpreter overhead
 - nREPL support: enable interactive development with editor integration
